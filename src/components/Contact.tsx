@@ -62,84 +62,26 @@ export default function Contact() {
 				</motion.div>
 
 				<div className="max-w-4xl mx-auto">
-					<div className="grid md:grid-cols-2 gap-8">
-						<motion.div
-							initial={{ opacity: 0, x: -20 }}
-							whileInView={{ opacity: 1, x: 0 }}
-							transition={{ duration: 0.8 }}
-							viewport={{ once: true }}
-							className="space-y-6"
-						>
-							<h3 className="text-2xl font-semibold text-white mb-6">Contact Information</h3>
-							<div className="space-y-4">
-								{contactInfo.map((info, index) => (
-									<motion.a
-										key={index}
-										href={info.href}
-										target={info.href.startsWith('http') ? '_blank' : undefined}
-										rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-										initial={{ opacity: 0, y: 10 }}
-										whileInView={{ opacity: 1, y: 0 }}
-										transition={{ duration: 0.5, delay: index * 0.1 }}
-										viewport={{ once: true }}
-										className="flex items-center p-4 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors group"
-									>
-										<div className="text-blue-400 mr-4 group-hover:scale-110 transition-transform">
-											{info.icon}
-										</div>
-										<div>
-											<p className="text-slate-300 font-medium">{info.label}</p>
-											<p className="text-slate-400 text-sm">{info.value}</p>
-										</div>
-									</motion.a>
-								))}
-							</div>
-						</motion.div>
-
-						<motion.div
-							initial={{ opacity: 0, x: 20 }}
-							whileInView={{ opacity: 1, x: 0 }}
-							transition={{ duration: 0.8 }}
-							viewport={{ once: true }}
-							className="bg-slate-700 p-6 rounded-lg"
-						>
-							<h3 className="text-2xl font-semibold text-white mb-6">Send a Message</h3>
-							<form className="space-y-4">
-								<div>
-									<label htmlFor="name" className="block text-slate-300 mb-2">Name</label>
-									<input
-										type="text"
-										id="name"
-										className="w-full px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-400"
-										placeholder="Your name"
-									/>
+					<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+						{contactInfo.map((info, index) => (
+							<motion.a
+								key={index}
+								href={info.href}
+								target={info.href.startsWith('http') ? '_blank' : undefined}
+								rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.5, delay: index * 0.1 }}
+								viewport={{ once: true }}
+								className="flex flex-col items-center p-6 bg-slate-700 rounded-lg hover:bg-slate-600 transition-all group hover:scale-105"
+							>
+								<div className="text-blue-400 mb-4 group-hover:scale-110 transition-transform">
+									{info.icon}
 								</div>
-								<div>
-									<label htmlFor="email" className="block text-slate-300 mb-2">Email</label>
-									<input
-										type="email"
-										id="email"
-										className="w-full px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-400"
-										placeholder="your.email@example.com"
-									/>
-								</div>
-								<div>
-									<label htmlFor="message" className="block text-slate-300 mb-2">Message</label>
-									<textarea
-										id="message"
-										rows={4}
-										className="w-full px-4 py-2 bg-slate-600 border border-slate-500 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-400 resize-none"
-										placeholder="Your message..."
-									/>
-								</div>
-								<button
-									type="submit"
-									className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors"
-								>
-									Send Message
-								</button>
-							</form>
-						</motion.div>
+								<p className="text-slate-300 font-medium text-center mb-2">{info.label}</p>
+								<p className="text-slate-400 text-sm text-center">{info.value}</p>
+							</motion.a>
+						))}
 					</div>
 				</div>
 			</div>

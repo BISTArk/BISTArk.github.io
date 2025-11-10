@@ -43,6 +43,12 @@ const skillCategories = [
 	}
 ];
 
+const getSkillColor = (level: number) => {
+	if (level >= 85) return 'bg-blue-500 text-white';
+	if (level >= 75) return 'bg-blue-400 text-white';
+	return 'bg-slate-600 text-slate-200';
+};
+
 export default function Skills() {
 	return (
 		<section id="skills" className="py-20 bg-slate-900">
@@ -71,23 +77,21 @@ export default function Skills() {
 							className="bg-slate-800 p-6 rounded-lg border border-slate-700"
 						>
 							<h3 className="text-xl font-semibold text-white mb-6">{category.category}</h3>
-							<div className="space-y-4">
+							<div className="flex flex-wrap gap-2">
 								{category.skills.map((skill, skillIndex) => (
-									<div key={skill.name}>
-										<div className="flex justify-between mb-2">
-											<span className="text-slate-300">{skill.name}</span>
-											<span className="text-slate-400 text-sm">{skill.level}%</span>
-										</div>
-										<div className="w-full bg-slate-700 rounded-full h-2">
-											<motion.div
-												initial={{ width: 0 }}
-												whileInView={{ width: `${skill.level}%` }}
-												transition={{ duration: 1, delay: skillIndex * 0.1 }}
-												viewport={{ once: true }}
-												className="bg-blue-500 h-2 rounded-full"
-											/>
-										</div>
-									</div>
+									<motion.span
+										key={skill.name}
+										initial={{ opacity: 0, scale: 0.8 }}
+										whileInView={{ opacity: 1, scale: 1 }}
+										transition={{
+											duration: 0.5,
+											delay: (categoryIndex * 0.2) + (skillIndex * 0.05)
+										}}
+										viewport={{ once: true }}
+										className={`px-3 py-1 rounded-full text-sm font-medium transition-all hover:scale-105 ${getSkillColor(skill.level)}`}
+									>
+										{skill.name}
+									</motion.span>
 								))}
 							</div>
 						</motion.div>
